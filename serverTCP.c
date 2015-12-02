@@ -7,29 +7,29 @@
 
 int main(void)
 {
-	// initialize tcp socket file descriptor (fd)
-	int sockfd = init_socket_tcp();
+    // initialize tcp socket file descriptor (fd)
+    int sockfd = init_socket_tcp();
 
-	// take care of dead processes
-	sigchld_handler();
+    // take care of dead processes
+    sigchld_handler();
 
-	printf("Server: waiting for connections...\n");
+    printf("Server: waiting for connections...\n");
 
-	fd_set master; // master fds for select()
+    fd_set master; // master fds for select()
     fd_set read_fds; // temp fds for select()
     uint8_t newfd; // temp fd for clients (incoming connections)
     uint8_t fdmax = sockfd; // keep track of the max fd
-	uint8_t i, j, nbytes;
-	char buf[MSGSIZE], remoteIP[INET6_ADDRSTRLEN];
-	struct sockaddr_storage remoteaddr;
-	socklen_t addrlen;
+    uint8_t i, j, nbytes;
+    char buf[MSGSIZE], remoteIP[INET6_ADDRSTRLEN];
+    struct sockaddr_storage remoteaddr;
+    socklen_t addrlen;
 
-	// clear sets
-	FD_ZERO(&master);
-	FD_ZERO(&read_fds);
+    // clear sets
+    FD_ZERO(&master);
+    FD_ZERO(&read_fds);
 
-	// add the sockfd to the master set
-	FD_SET(sockfd, &master);
+    // add the sockfd to the master set
+    FD_SET(sockfd, &master);
 
     while (1) {
         read_fds = master;
@@ -80,5 +80,5 @@ int main(void)
                 }
             }
     }
-	return 0;
+    return 0;
 }
