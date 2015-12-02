@@ -1,0 +1,6 @@
+This is a simple implementation of a TCP chat using C language
+
+In order to compile run: make
+Server can be started as ./serverTCP
+Client can be started as ./clientTCP or ./clientTCP ipaddress,
+       where IP address is a server IP address in string format.
